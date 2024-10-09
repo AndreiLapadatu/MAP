@@ -1,7 +1,7 @@
 import Aufgabe1.Uni;
 import Aufgabe2.ArrayUb2;
 import Aufgabe3.grossZahlAlsArray;
-
+import Aufgabe4.electroShop;
 
 public class Main {
     public static void main(String[] args) {
@@ -30,6 +30,19 @@ public class Main {
         System.out.println(grossarr.subtraction());
         System.out.println(grossarr.multiplication());
         System.out.println(grossarr.division());
+
+        electroShop shop = new electroShop();
+        shop.Tastatur.add(15);
+        shop.Tastatur.add(20);
+        shop.Tastatur.add(35);
+        shop.USB.add(15);
+        shop.USB.add(20);
+        shop.USB.add(40);
+        System.out.println(shop.billig());
+        System.out.println(shop.am_teuersten());
+        System.out.println(shop.buget());
+        System.out.println(shop.max_basket());
+
 
     }
 }
