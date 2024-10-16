@@ -1,14 +1,14 @@
 package Aufgabe2;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
 public class ArrayUb2 {
 
-    public List<Integer> positiv = new ArrayList<>();
 
     int max = 0;
 
-    public int maximal() {
+    public int maximal(int[] positiv) {
         for (Integer i : positiv) {
             if (i > max) {
                 max = i;
@@ -19,8 +19,8 @@ public class ArrayUb2 {
 
 
 
-    public int minimal() {
-        int min = positiv.getFirst();
+    public int minimal(int[] positiv) {
+        int min = Arrays.stream(positiv).findFirst().getAsInt();
         for (Integer i : positiv) {
             if (i < min) {
                 min = i;
@@ -29,11 +29,13 @@ public class ArrayUb2 {
         return min;
     }
 
-    public int maxsum() {
-        List<Integer> maxsum = new ArrayList<>();
+    public int maxsum(int[] positiv) {
+        //List<Integer> maxsum = new ArrayList<>();
+        int [] maxsum = new int[positiv.length];
+        int index = 0;
         for (Integer i : positiv) {
-            if (i != minimal()) {
-                maxsum.add(i);
+            if (i != minimal(positiv)) {
+                maxsum[index++] = i;
             }
         }
         int sum = 0;
@@ -43,11 +45,12 @@ public class ArrayUb2 {
         return sum;
     }
 
-    public int minsum() {
-        List<Integer> minsum = new ArrayList<>();
+    public int minsum(int[] positiv) {
+        int[] minsum = new int[positiv.length];
+        int index = 0;
         for (Integer i : positiv) {
             if (i != max) {
-                minsum.add(i);
+                minsum[index++] = i;
             }
         }
         int sum = 0;

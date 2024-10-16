@@ -4,22 +4,21 @@ import java.util.List;
 
 public class Uni {
 
-    public List<Integer> notenArray = new ArrayList<>();
-    public List<Integer> nicht_reichend = new ArrayList<>();
 
 
-    public List<Integer> NichtAusreichender() {
-
+    public int[] NichtAusreichender(int[]notenArray) {
+        int[]nicht_reichender = new int[notenArray.length];
+        int index = 0;
         for (Integer integer : notenArray) {
             if (integer < 40) {
-                nicht_reichend.add(integer);
+                nicht_reichender[index++] = integer;
             }
         }
-        return nicht_reichend;
+        return nicht_reichender;
     }
 
 
-    public double Sum() {
+    public double Sum(int[]notenArray) {
         double sum = 0;
         for (Integer integer : notenArray) {
             sum += integer;
@@ -28,31 +27,34 @@ public class Uni {
     }
 
 
-    public float Durschschnitt() {
+    public float Durschschnitt(int []notenArray) {
 
-        double sum = Sum();
-        float durchschnitt = (float) (sum / notenArray.size());
+        double sum = Sum(notenArray);
+        float durchschnitt = (float) (sum / notenArray.length);
         return durchschnitt;
     }
 
-    List<Integer>rundenArray = new ArrayList<>();
 
-    public List<Integer> Abrundung(){
-        for(Integer integer : notenArray){
+
+    public int[] Abrundung(int []notenArray){
+        int[] rundenArray = new int [notenArray.length];
+        int index = 0;
+        for(int integer : notenArray){
             if(integer < 38){
-                rundenArray.add(integer);
+                rundenArray[index++] = integer;
             }else if(integer%10 == 3 || integer%10 == 8){
-                 rundenArray.add(integer+2);
+                 rundenArray[index++] = integer + 2;
             } else if (integer%10 == 4 || integer%10 == 9) {
-                rundenArray.add(integer+1);
-            }else{rundenArray.add(integer);}
+                rundenArray[index++] = integer + 1;
+            }else{rundenArray[index++] = integer;}
 
         }
     return rundenArray;
     }
 
-    public int max_nach_runden(){
+    public int max_nach_runden(int[] notenArray){
         int max = 0;
+        int[] rundenArray = Abrundung(notenArray);
         for(Integer integer : rundenArray){
             if(integer > max){
                 max = integer;

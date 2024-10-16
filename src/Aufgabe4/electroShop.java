@@ -1,14 +1,15 @@
 package Aufgabe4;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 public class electroShop {
 
-    public List<Integer>Tastatur = new ArrayList<>();
-    public List<Integer>USB = new ArrayList<>();
+    //public List<Integer>Tastatur = new ArrayList<>();
+    //public List<Integer>USB = new ArrayList<>();
 
-    public int billig(){
-        int min = Tastatur.getFirst();
-        for(Integer i : Tastatur){
+    public int billig(int[]tastatur){
+        int min = Arrays.stream(tastatur).findFirst().getAsInt();
+        for(Integer i : tastatur){
             if(i < min){
                 min = i;
             }
@@ -16,15 +17,15 @@ public class electroShop {
         return min;
     }
 
-    public int am_teuersten(){
+    public int am_teuersten(int[]tastatur, int[]usb){
         int max1 = 0;
-        for(Integer i : Tastatur){
+        for(Integer i : tastatur){
             if(i > max1){
                 max1 = i;
             }
         }
         int max2 = 0;
-        for(Integer i : USB){
+        for(Integer i : usb){
             if(i > max2){
                 max2 = i;
             }
@@ -35,13 +36,13 @@ public class electroShop {
     }
 
 
-    public int buget(){
-        int money = 30;
-        List<Integer>affordable = new ArrayList<>();
-        for(Integer i : USB){
+    public int buget(int money,int []usb){
+        //int money = 30;
+        int [] affordable = new int [usb.length];
+        int index = 0;
+        for(Integer i : usb){
             if(i <= money){
-                affordable.add(i);
-
+                affordable[index] = i;
             }
         }
         int max = 0;
@@ -53,16 +54,19 @@ public class electroShop {
         return max;
     }
 
-    public int max_basket() {
-        int buget = 60;
-        List<Integer>basket = new ArrayList<>();
-        for (Integer i : USB) {
-            for(Integer j : Tastatur){
+    public int max_basket(int buget,int[]tastatur, int[]usb) {
+        //int buget = 60;
+        int []basket = new int [usb.length];
+        int index = 0;
+        for (Integer i : usb) {
+            for(Integer j : tastatur){
                 if(i + j <= buget){
-                    basket.add(i + j);
+                    basket[index] = i+j;
                 }
             }
+            index++;
         }
+
         int max = 0;
         for(Integer i : basket){
             if(i > max){
